@@ -1,0 +1,26 @@
+body {
+    font-size: 1.25em;
+  line-height: 1.25em;
+  font-family: "ff-meta-serif-web-pro",serif;
+}
+
+h1 {
+   font-size: 3rem;
+ font-weight: 900;
+ line-height: 1.5em;
+ font-family: "brandon-grotesque",sans-serif;
+}
+
+p {
+     margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+            color: #0000FF;
+  text-decoration: none;
+}
+
