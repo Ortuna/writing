@@ -1,18 +1,20 @@
 body {
-    font-size: 1.25em;
+  background-color: #fff;
   line-height: 1.25em;
-  font-family: "ff-meta-serif-web-pro",serif;
-}
+  font-family: adelle-sans, serif;
+  font-size:115%;
+  color:#222f;
+} 
 
 h1 {
-   font-size: 3rem;
- font-weight: 900;
- line-height: 1.5em;
- font-family: "brandon-grotesque",sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.5em;
+  font-family: adelle, serif;
 }
 
 p {
-     margin-top: 1rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -20,7 +22,7 @@ a,
 a:hover,
 a:active,
 a:visited {
-            color: #0000FF;
+  color: #F02311;
   text-decoration: none;
 }
 
