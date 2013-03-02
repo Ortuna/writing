@@ -31,7 +31,7 @@ class Writing < Padrino::Application
   end
 
   get :login, :map => '/login' do
-    redirect_local '/auth/github'
+    link_to 'Login with github', '/auth/github'
   end
   
   get :logout, :map => '/logout' do
