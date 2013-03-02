@@ -3,11 +3,14 @@ gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'haml'
 gem 'padrino' #:git => 'git://github.com/padrino/padrino-framework.git'
+# gem 'padrino', :path => '~/Desktop/padrino/padrino-framework'
 group :test do 
   gem 'rspec'
   gem 'rack-test'
 end
 
+gem 'omniauth'
+gem 'omniauth-github'
 
 gem 'dm-postgres-adapter'
 gem 'dm-sqlite-adapter', :group => ['development','test']
