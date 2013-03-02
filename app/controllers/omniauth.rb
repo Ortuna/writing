@@ -1,13 +1,21 @@
 class Writing < Padrino::Application
   register Padrino::Admin::AccessControl
   enable :sessions
-
+  
   #access
-  set :login_page, "/login"
-  set :admin_model, "User"
+  set :login_page,      '/login'
+  set :admin_model,     'User'
+  set :protected_paths, ['/']
+  set :allowed_paths,   ['/login', '/logout', '/auth/github', '/auth/github/callback', '/profile']
 
   access_control.roles_for :any do |role|
-    role.protect "/admin"
+    protected_paths.each do |path|
+      role.protect path
+    end
+
+    allowed_paths.each do |path|
+      role.allow path
+    end
   end
   
   #providers
@@ -25,11 +33,15 @@ class Writing < Padrino::Application
   get :login, :map => '/login' do
     redirect_local '/auth/github'
   end
-
-  get :profiel, :map => '/profile' do
-    'in profile!'
+  
+  get :logout, :map => '/logout' do
+    set_current_account(nil)
+    redirect url(:index)
   end
 
+  get :profile, :map => '/profile' do
+    session["session_id"]
+  end
 
   private
   def redirect_auth_failed
@@ -44,4 +56,5 @@ class Writing < Padrino::Application
   def redirect_local(to)
     redirect "http://" + request.env["HTTP_HOST"] + to
   end
+
 end
