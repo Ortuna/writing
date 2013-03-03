@@ -6,6 +6,7 @@ class User
   property :role,     String
   property :provider, String
   property :name,     String
+  property :image_url,String
 
   validates_presence_of   :uid, :provider, :name
   validates_uniqueness_of :uid
@@ -21,13 +22,14 @@ class User
 
   def self.create_with_omniauth(auth)
     user       = User.new
-    user.attributes = [:provider, :uid, :name].inject({:role => 'author'}) do |memo, attr|
-      key = attr.to_s
-      memo[attr] = auth[key] ? auth[key] : nil
-      memo
-    end
-    user.save
-    user
+    user.attributes = {
+      provider: auth['provider'],
+      uid:       auth['uid'],
+      name:      auth['info']['name'],
+      image_url: auth['info']['image'],
+      role:      'author'
+    }
+    user.save ? user : nil
   end
 
 end

@@ -25,8 +25,7 @@ class Writing < Padrino::Application
 
   get :auth, :map => '/auth/:provider/callback' do
     auth    = request.env["omniauth.auth"]
-    account = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) ||
-              User.create_with_omniauth(auth)
+    account = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
     account ? redirect_and_set_current_account(auth) : redirect_auth_failed
   end
 
@@ -43,9 +42,13 @@ class Writing < Padrino::Application
     session["session_id"]
   end
 
+  get :failed_auth, :map => '/failed' do
+    "Failed auth"
+  end
+
   private
   def redirect_auth_failed
-    redirect_local '/failed'
+    redirect_local url(:failed_auth)
   end
 
   def redirect_and_set_current_account(account)

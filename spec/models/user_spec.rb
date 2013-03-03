@@ -61,6 +61,7 @@ describe User do
       auth = auth_fields
       user = User.create_with_omniauth(auth)
       user.id.should_not be_nil
+      user.errors.should be_empty
     end
 
     it 'Should not save with missing auth fields' do
@@ -69,8 +70,7 @@ describe User do
         auth_attributes = auth.dup
         auth_attributes.delete(field)
         user = User.create_with_omniauth(auth_attributes)
-        user.id.should be_nil
-        user.errors.should_not be_nil
+        user.should be_nil
       end
     end #it
   end #describe
