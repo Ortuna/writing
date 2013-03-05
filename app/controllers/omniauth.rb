@@ -1,22 +1,14 @@
 class Writing < Padrino::Application
   register Padrino::Admin::AccessControl
+  register Padrino::Admin::AccessHelpers
   enable :sessions
   
   #access
-  set :login_page,      '/login'
-  set :admin_model,     'User'
-  set :protected_paths, ['/']
-  set :allowed_paths,   ['/login', '/logout', '/auth/github', '/auth/github/callback', '/profile']
-
-  access_control.roles_for :any do |role|
-    protected_paths.each do |path|
-      role.protect path
-    end
-
-    allowed_paths.each do |path|
-      role.allow path
-    end
-  end
+  set :login_page,  '/login'
+  set :admin_model, 'User'
+  
+  protect_paths ['/profile', '/editor']
+  allow_paths   ['/login', '/logout', '/auth/github', '/auth/github/callback']
   
   #providers
   use OmniAuth::Builder do
@@ -36,10 +28,6 @@ class Writing < Padrino::Application
   get :logout, :map => '/logout' do
     set_current_account(nil)
     redirect url(:index)
-  end
-
-  get :profile, :map => '/profile' do
-    session["session_id"]
   end
 
   get :failed_auth, :map => '/failed' do
