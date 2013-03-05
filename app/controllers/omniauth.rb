@@ -7,7 +7,7 @@ class Writing < Padrino::Application
   set :login_page,  '/login'
   set :admin_model, 'User'
   
-  protect_paths ['/profile', '/editor']
+  protect_paths ['/']
   allow_paths   ['/login', '/logout', '/auth/github', '/auth/github/callback']
   
   #providers
@@ -18,7 +18,7 @@ class Writing < Padrino::Application
   get :auth, :map => '/auth/:provider/callback' do
     auth    = request.env["omniauth.auth"]
     account = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
-    account ? redirect_and_set_current_account(auth) : redirect_auth_failed
+    account ? redirect_and_set_current_account(account) : redirect_auth_failed
   end
 
   get :login, :map => '/login' do
