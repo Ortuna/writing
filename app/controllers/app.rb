@@ -7,4 +7,9 @@ class Writing < Padrino::Application
     render :index
   end
 
+
+  private
+  def page_slug
+    request.path == '/' ? 'home' : request.path.parameterize
+  end
 end

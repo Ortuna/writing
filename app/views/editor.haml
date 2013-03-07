@@ -1,0 +1,41 @@
+%form
+  %textarea{id: 'code', name: 'code'}
+    = code
+.preview
+
+:javascript
+  function editorElement() {
+    return document.getElementById('code');
+  }
+
+  var editor = CodeMirror.fromTextArea(editorElement(), {
+    mode: 'markdown',
+    lineNumbers: false,
+    lineWrapping: true,
+    tabSize: 2,
+    theme: 'ambiance',
+    extraKeys: { "Enter": "newlineAndIndentContinueMarkdownList" }
+  });
+  editor.on('update', function(){
+    updatePreview( editor.getValue() );
+  });
+
+:javascript
+  marked.setOptions({
+    gfm: true,
+    tables: true,
+    breaks: true,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+  });
+
+:javascript
+  function updatePreview(code){
+    $(".preview").html( marked(code) );
+    $(".preview").height($(document).height());
+  }
+
+  $(document).ready(function(){
+    updatePreview( editor.getValue() );
+  });

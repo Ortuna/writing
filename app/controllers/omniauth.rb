@@ -21,7 +21,7 @@ class Writing < Padrino::Application
     account ? redirect_and_set_current_account(account) : redirect_auth_failed
   end
 
-  get :login, :map => '/login' do
+  get :login, :map => '/login'do
     link_to 'Login with github', '/auth/github'
   end
   
@@ -41,7 +41,7 @@ class Writing < Padrino::Application
 
   def redirect_and_set_current_account(account)
     set_current_account(account)
-    redirect_local '/profile'
+    redirect_local '/editor'
   end
 
   def redirect_local(to)
