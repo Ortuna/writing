@@ -1,7 +1,28 @@
+/*
+  Reset
+*/
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+}
+
+html {
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+/*
+  CSS - Everything
+*/
 body {
   background-color: #fff;
   line-height: 1.25em;
-  font-family: adelle-sans, serif;
+  font-family: "ff-tisa-web-pro",serif;
   font-size:115%;
   color:#222f;
 } 
@@ -43,6 +64,11 @@ p {
   margin-bottom: 1rem;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 a,
 a:hover,
 a:active,
@@ -51,3 +77,10 @@ a:visited {
   text-decoration: none;
 }
 
+
+.container {
+     margin: 0 auto;
+    padding: 1.5rem 1rem;
+   position: relative;
+  max-width: 80%;
+}

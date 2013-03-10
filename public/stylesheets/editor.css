@@ -1,20 +1,47 @@
+/*
+  CSS - Editor
+*/
 body {
   background-color: #202020;
-
+  overflow: hidden;
 }
 .container {
      margin: 0 auto;
-    padding: 0;
-   position: relative;
+    padding: 0; 
   max-width: 100%;
 }
 
-.editor .CodeMirror {
-  width:49%;
-  height:100%;
-  font-size:16px;
+.editor .CodeMirror,
+.preview-pane {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
-  float:left;
+  overflow-y: scroll;
+  position: absolute;
+  top:0px;
+}
+
+.editor .CodeMirror {
+  font-family: "ff-tisa-web-pro",serif;
+  font-size: 14px;
+
+  left:0px;
+  
+}
+
+.editor .preview-pane {
+  background-color: #fff;
+
+  right:0px;
+}
+
+
+/* Editor Theme overrides */
+.editor .cm-s-ambiance .cm-header {
+  color: green;
 }
 
 .cm-s-ambiance.CodeMirror {
@@ -23,12 +50,4 @@ body {
   -moz-box-shadow: none !important;
   -o-box-shadow: none !important;
   box-shadow: none !important;
-}
-
-.editor .preview {
-  width:49%;
-  height: 100%;
-  background-color: #fff;
-
-  float:right;
 }

@@ -8,20 +8,59 @@ class Writing < Padrino::Application
 
   def code
     <<-EOS
-Markdown: Basics
-================
+First Example Post
+=====
 
-<ul id="ProjectSubmenu">
-    <li><a href="/projects/markdown/" title="Markdown Project Page">Main</a></li>
-    <li><a class="selected" title="Markdown Basics">Basics</a></li>
-    <li><a href="/projects/markdown/syntax" title="Markdown Syntax Documentation">Syntax</a></li>
-    <li><a href="/projects/markdown/license" title="Pricing and License Information">License</a></li>
-    <li><a href="/projects/markdown/dingus" title="Online Markdown Web Form">Dingus</a></li>
-</ul>
+This page offers a brief overview of what it's like to use Markdown.
+The [syntax page] [s] provides complete, detailed documentation for
+every feature, but Markdown should be very easy to pick up simply by
+looking at a few examples of it in action. The examples on this page
+are written in a before/after style, showing example syntax and the
+HTML output produced by Markdown.
 
 
-Getting the Gist of Markdown's Formatting Syntax
-------------------------------------------------
+````ruby
+class Blog < Padrino::Application
+  register Padrino::Rendering
+  register Padrino::Helpers
+  disable :sessions
+
+  layout :application
+
+  get :index do
+    set_title "List of posts"
+    @post = Post.first
+    render :index
+  end
+
+  get :index, :with => :path do
+    @post = Post.first(:path => params[:path])
+    set_title @post.title
+    @post ? render(:index) : not_found
+  end
+
+private
+  not_found do
+    response.status = 404
+    "Post Not Found"
+  end
+
+  def find_post_by_parms(params = {})
+    Post.first(:id => params[:id])
+  end
+
+  def set_title(title = "")
+    content_for :title do
+      title
+    end
+  end
+end
+
+````
+
+
+## How Code is edited on the backend ##
+[![back end](http://i.imgur.com/FyuW0jS.png)](http://i.imgur.com/FyuW0jS.png)
 
 This page offers a brief overview of what it's like to use Markdown.
 The [syntax page] [s] provides complete, detailed documentation for
@@ -60,28 +99,28 @@ HTML header level.
 Blockquotes are indicated using email-style '`>`' angle brackets.
 
 Markdown:
+````xml
+A First Level Header
+====================
 
-    A First Level Header
-    ====================
-    
-    A Second Level Header
-    ---------------------
+A Second Level Header
+---------------------
 
-    Now is the time for all good men to come to
-    the aid of their country. This is just a
-    regular paragraph.
+Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.
 
-    The quick brown fox jumped over the lazy
-    dog's back.
-    
-    ### Header 3
+The quick brown fox jumped over the lazy
+dog's back.
 
-    > This is a blockquote.
-    > 
-    > This is the second paragraph in the blockquote.
-    >
-    > ## This is an H2 in a blockquote
+### Header 3
 
+> This is a blockquote.
+> 
+> This is the second paragraph in the blockquote.
+>
+> ## This is an H2 in a blockquote
+````
 
 Output:
 
@@ -315,7 +354,6 @@ Output:
         &lt;p&gt;For example.&lt;/p&gt;
     &lt;/blockquote&gt;
     </code></pre>
-
     EOS
   end
 end
