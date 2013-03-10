@@ -3,7 +3,7 @@ class Writing < Padrino::Application
   enable :sessions
 
   get :editor, :map => '/editor' do
-    render :editor
+    render 'editor/editor'
   end
 
   def code
