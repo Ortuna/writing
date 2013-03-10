@@ -51,3 +51,8 @@ body {
   -o-box-shadow: none !important;
   box-shadow: none !important;
 }
+
+.CodeMirror-selectedtext {
+/*  background-color: #E8E2B5;
+  color: #000;*/
+}
