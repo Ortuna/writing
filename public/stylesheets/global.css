@@ -69,6 +69,18 @@ h1,h2,h3,h4,h5,h6 {
   margin-bottom: 1.25rem;
 }
 
+ul,
+ol {
+  display: block;
+  list-style-type: disc;
+  padding: 1em;
+  margin-left: .5em;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
 .container {
      margin: 0 auto;
     padding: 1.5rem 1rem;

@@ -14,7 +14,7 @@
       try{Typekit.load();}catch(e){}
 
     = stylesheet_link_tag 'global', :media => 'all'
-    = render_partial 'editor/partials/editor_header' if page_slug == 'editor'
+    = render_partial 'editor/partials/header' if page_slug == 'editor'
 
     %link{ :href => "/images/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon" }
     %link{ :href => "/images/icon.jpg", :rel => "apple-touch-icon" }

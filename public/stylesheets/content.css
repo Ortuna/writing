@@ -45,11 +45,6 @@ pre code {
   border-radius: 5px;
 }
 
-pre code.ruby
-{
-    padding:0.7em;
-}
-
 blockquote {
   background: #f7f7f7;
   border-left: 1px solid #bbb;
