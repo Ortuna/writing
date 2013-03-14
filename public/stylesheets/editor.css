@@ -25,9 +25,8 @@ body {
 }
 
 .editor .CodeMirror {
-  font-family: "ff-tisa-web-pro",serif;
-  font-size: .80em;
-
+  font-size: .90em;
+  line-height: 1.2;
   left:0px;
 }
 
@@ -44,6 +43,8 @@ body {
 }
 
 .editor .cm-s-ambiance.CodeMirror {
+  font-family: inconsolata,monospace !important;
+
   background-color: transparent;
   background-image: none;
   -webkit-box-shadow: none !important;

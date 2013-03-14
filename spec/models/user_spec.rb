@@ -53,20 +53,20 @@ describe User do
       {
         "provider" => 'github',
         "name"     => 'Jason Bourne',
-        "uid"      => 'testuser@gmail.com'
+        "uid"      => 'testuser@gmail.com',
+        "info"     => {'name' => 'tmp', 'image' => 'tmp'}
       }
     end
 
     it 'Should be able to create with auth' do
-      auth = auth_fields
-      user = User.create_with_omniauth(auth)
+      user = User.create_with_omniauth(auth_fields)
       user.id.should_not be_nil
       user.errors.should be_empty
     end
 
     it 'Should not save with missing auth fields' do
 
-      (auth = auth_fields).each do |field, value|
+      (auth = auth_fields).first(3) do |field, value|
         auth_attributes = auth.dup
         auth_attributes.delete(field)
         user = User.create_with_omniauth(auth_attributes)

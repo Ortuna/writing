@@ -28,25 +28,37 @@ body {
 } 
 
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   line-height: 3rem;
   font-family: adelle, serif;
+  text-align: center;
+}
+
+h1::after{
+  content: "";
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
+  border-bottom: 1px solid #eeeeee;
+  top: 100%;
+  position: absolute;
+  margin-top: 1rem;
 }
 
 h2 {
-  font-size: 2.5rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 
 h3 {
-  font-size: 2.0rem;
-  line-height: 2.0rem;
+  font-size: 1.0rem;
+  line-height: 1.0rem;
 }
 
 h4 {
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  font-size: 1.0rem;
+  line-height: 1.0rem;
 }
 
 h5 {
@@ -55,8 +67,8 @@ h5 {
 }
 
 h6 {
-  font-size: .5rem;
-  line-height: .5rem;
+  font-size: 1.0rem;
+  line-height: 1.0rem;
 }
 
 p {

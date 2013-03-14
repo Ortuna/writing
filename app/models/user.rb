@@ -23,7 +23,7 @@ class User
   def self.create_with_omniauth(auth)
     user       = User.new
     user.attributes = {
-      provider: auth['provider'],
+      provider:  auth['provider'],
       uid:       auth['uid'],
       name:      auth['info']['name'],
       image_url: auth['info']['image'],

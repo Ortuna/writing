@@ -11,6 +11,7 @@
     theme: 'ambiance',
     extraKeys: { "Enter": "newlineAndIndentContinueMarkdownList" }
   });
+  
   editor.on('update', function(){
     updatePreview( editor.getValue() );
   });
