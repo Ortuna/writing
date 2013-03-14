@@ -156,4 +156,5 @@ DEPENDENCIES
   rack-test
   rake
   rspec
+  rspec-mocks
   sinatra-flash

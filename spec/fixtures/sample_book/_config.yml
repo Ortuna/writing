@@ -1,0 +1,11 @@
+#Book Description
+title: Sample Book
+description: This is a sample book
+
+#Author Information
+author: Your Name
+author_email: you@example.com
+
+#Book details
+chapters_dir: /chapters
+url: http://yourdomain.com/

@@ -6,6 +6,7 @@ gem 'padrino' #:git => 'git://github.com/padrino/padrino-framework.git'
 # gem 'padrino', :path => '~/Desktop/padrino/padrino-framework'
 group :test do 
   gem 'rspec'
+  gem 'rspec-mocks'
   gem 'rack-test'
 end
 
