@@ -4,6 +4,11 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'haml'
 gem 'padrino' #:git => 'git://github.com/padrino/padrino-framework.git'
 # gem 'padrino', :path => '~/Desktop/padrino/padrino-framework'
+
+group :development do
+  gem 'pry'
+end
+
 group :test do 
   gem 'rspec'
   gem 'rspec-mocks'

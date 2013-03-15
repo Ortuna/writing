@@ -6,7 +6,8 @@ describe Kitana::Book do
     @book = Kitana::Book.new(path)
   end
 
-  describe "Configuration loading" do
+  #Basic required features
+  describe "Configuration" do
     it 'Should have a title' do
       @book.title.should == 'Sample Book'
     end
@@ -24,7 +25,7 @@ describe Kitana::Book do
     end
 
     it 'Should have a chapters_dir' do
-      @book.chapters_dir.should == '/chapters'
+      @book.chapters_path.should == '/chapters'
     end
 
     it 'Should have chapters as an array' do

@@ -7,5 +7,5 @@ author: Your Name
 author_email: you@example.com
 
 #Book details
-chapters_dir: /chapters
+chapters_path: /chapters
 url: http://yourdomain.com/
