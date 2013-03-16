@@ -2,8 +2,8 @@ require "#{File.dirname(__FILE__)}/../spec_helper.rb"
 
 describe Kitana::Book do
   before :each do 
-    path  = "#{PADRINO_ROOT}/spec/fixtures/sample_book"
-    @book = Kitana::Book.new(path)
+    @path  = "#{PADRINO_ROOT}/spec/fixtures/sample_book"
+    @book = Kitana::Book.new(@path)
   end
 
   #Basic required features
@@ -30,6 +30,14 @@ describe Kitana::Book do
 
     it 'Should have chapters as an array' do
       @book.chapters.should_not be_nil
+    end
+
+    xit 'Should update the title if saved' do
+      @book.title = 'Edited Title'
+      @book.save
+
+      book = Kitana::Book.new(@path)
+      book.title.should == 'Edited Title'
     end
   end
 

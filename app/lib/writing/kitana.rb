@@ -8,8 +8,13 @@ module Kitana
     end
     
     def read_config
-      load_path = "#{path}/#{config_path}"      
-      YAML::load( File.open(load_path) )  if File.exists?(load_path)
+      load_path = "#{path}/#{config_path}"
+      if File.exists?(load_path)
+        config_hash = YAML::load(File.open(load_path))
+        config_hash.empty? {} : config_hash
+      else
+        {}
+      end
     end
 
     def config_path
