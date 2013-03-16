@@ -19,23 +19,21 @@ describe Md::Helper do
   end
 
   it 'Should extract metadata from markdown' do
-    md = markdown_with_metadata + markdown_without_metadata
+    md       = markdown_with_metadata + markdown_without_metadata
     metadata = Md::Helper.extract_metadata md
-    metadata["title"].should == "Chapter 1"
+    metadata["title"].should  == "Chapter 1"
     metadata["author"].should == "Sumeet Singh"
-    metadata["email"].should == "ortuña@gmail.com"
+    metadata["email"].should  == "ortuña@gmail.com"
   end
 
   it 'Should skip extracting data from markdown without metadata' do
-    md = markdown_without_metadata
-
+    md       = markdown_without_metadata
     metadata = Md::Helper.extract_metadata md
     metadata.size.should be 0
   end
 
   it 'Should extract just the markdown from string with metadata' do
     md = markdown_with_metadata + markdown_without_metadata
-
     markdown_text = Md::Helper.extract_markdown md
     markdown_text.strip.should == markdown_without_metadata
   end

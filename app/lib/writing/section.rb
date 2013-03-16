@@ -2,26 +2,20 @@ module Kitana
   class Section
     include Kitana::Common
     
-    attr_accessor :title, :body
-    attr_reader   :path
+    attr_accessor :title, :body, :metadata
+    attr_reader   :path,  :markdown
 
     def initialize(path)
-      @path = path
-      load_section
+      @path     = path
+      @markdown = read_file
+      @metadata = Md::Helper.extract_metadata(@markdown)
+      @body     = Md::Helper.extract_markdown(@markdown)
+      @title    = @metadata["title"] || ""
     end
 
     private
-    def load_section
-      body  = read_body
-      title = extract_title
-    end
-
-    def read_body
-      File.read(File.open(path))
-    end
-
-    def extract_title
-      
+    def read_file
+      File.read(@path)
     end
   end
 end
