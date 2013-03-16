@@ -2,7 +2,7 @@
 title: Section 1
 author: Sumeet Singh
 ------------
-First Example Post
+First Example Post from file
 =====
 
 This page offers a brief overview of what it's like to use Markdown.
