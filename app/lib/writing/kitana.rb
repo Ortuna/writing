@@ -8,13 +8,7 @@ module Kitana
     end
     
     def read_config
-      load_path = "#{path}/#{config_path}"
-      if File.exists?(load_path)
-        config_hash = YAML::load(File.open(load_path))
-        config_hash.empty? {} : config_hash
-      else
-        {}
-      end
+      yaml_file_to_hash "#{path}/#{config_path}"
     end
 
     def config_path
@@ -26,5 +20,14 @@ module Kitana
         memo << klass.new(inject_path)
       }
     end
+
+    private
+    def yaml_file_to_hash(file_path)
+      config_hash = YAML::load(File.open(file_path))
+      return config_hash ? config_hash : {}
+    rescue
+      return {}
+    end
+
   end
 end

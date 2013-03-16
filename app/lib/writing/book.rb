@@ -36,7 +36,32 @@ module Kitana
       FileUtils.rm_rf @path
     end
 
+    ###
+    ## Saves the book and all 
+    #  it's sub-components
+    #
+    def save
+      raise 'Could not find repo' if !@repo
+      save_config
+      commit_all "Saved book"
+    end
+
     private
+    def commit_all(commit_message = 'save')
+      @repo.commit_all commit_message
+    end
+
+    def save_config
+      config_hash = configurable_options.inject({}) do |memo, option|
+        memo[option] = self.send(option) if respond_to? option
+        memo
+      end
+      File.open("#{@path}/#{config_path}", 'w+') do |output|
+        YAML::dump(config_hash, output)
+      end
+      @repo.add "#{@path}/#{config_path}"
+    end
+
     def create_init_git_repo
       @repo = Grit::Repo.init(@path)
       new_config_path = "#{@path}/#{config_path}"

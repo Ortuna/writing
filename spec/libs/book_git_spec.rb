@@ -13,6 +13,7 @@ describe Kitana::Book do
 
   #Checkout a certain date feature
   describe "Checkout" do
+
     it 'Should not exist for invalid paths' do
       book = Kitana::Book.new('/tmp')
       book.send(:repo_exists?).should == false
@@ -21,12 +22,16 @@ describe Kitana::Book do
     it 'Should create a book repo' do
       repo = @book.send(:repo)
       repo.should_not be_nil
-      repo.commits.first.should_not be_nil
+      repo.log.first.should_not be_nil
     end
 
     it 'Should save changed configs to file' do
-      # config_path = "#{@path}/_config.yml"
-      # output = YAML::dump({'title' => 'Sample Book Test'}, output)
+      @book.title = 'A cook book'
+      @book.save
+
+      book = Kitana::Book.new(@path)
+      book.send(:repo_exists?).should == true
+      book.title.should == 'A cook book'
     end
 
     xit 'Should be able to display changes from a minute ago' do
