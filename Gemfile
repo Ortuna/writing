@@ -28,7 +28,6 @@ gem 'dm-aggregates'
 gem 'dm-types'
 gem 'dm-core'
 
-
 # Or Individual Gems
 # %w(core gen helpers cache mailer admin).each do |g|
 #   gem 'padrino-' + g, '0.10.7'

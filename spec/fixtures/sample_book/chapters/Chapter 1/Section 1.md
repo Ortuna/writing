@@ -1,3 +1,7 @@
+------------
+Title: Section 1
+Author: Sumeet Singh
+------------
 First Example Post
 =====
 
