@@ -2,7 +2,7 @@ require "#{File.dirname(__FILE__)}/../spec_helper.rb"
 
 describe Kitana::Book do
   before :each do 
-    @path  = "#{PADRINO_ROOT}/tmp/sample_book_test"
+    @path  = "/tmp/sample_book_test"
     @book = Kitana::Book.new(@path)
     @book.create
   end
@@ -61,7 +61,7 @@ describe Kitana::Book do
       chapter.sections << section
       @book.chapters   << chapter
       @book.save
-
+      
       book = Kitana::Book.new(@path)
       book.chapters.first.sections.first.title.should == 'Section 1'
     end

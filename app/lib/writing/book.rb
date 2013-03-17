@@ -9,7 +9,7 @@ module Kitana
     attr_reader   :path, :repo
 
     def initialize(book_path)
-      @path = book_path
+      @path = File.expand_path(book_path)
       load_book
 
       @chapters = load_chapters
@@ -38,7 +38,8 @@ module Kitana
       raise 'Could not find repo' if !@repo
       save_config
       save_chapters
-      commit_all "Saved book"
+      git_add_all
+      git_commit_all "Saved book"
     end
 
     private
@@ -51,8 +52,12 @@ module Kitana
       chapters.select { |chapter| chapter.path != "#{path}#{chapters_path}/" }
     end
 
-    def commit_all(commit_message = 'save')
-      @repo.commit_all commit_message
+    def git_add_all
+      Dir.chdir("#{path}") { @repo.add('.') }
+    end
+
+    def git_commit_all(commit_message = 'save')
+      @repo.commit_index commit_message
     end
 
     def save_config
@@ -63,15 +68,15 @@ module Kitana
       File.open("#{@path}/#{config_path}", 'w+') do |output|
         YAML::dump(config_hash, output)
       end
-      @repo.add "#{@path}/#{config_path}"
+      @repo.add File.expand_path("#{@path}/#{config_path}")
     end
 
     def create_init_git_repo
       @repo = Grit::Repo.init(@path)
-      new_config_path = "#{@path}/#{config_path}"
+      new_config_path = File.expand_path("#{@path}/#{config_path}")
       FileUtils.touch new_config_path
-      @repo.add new_config_path
-      @repo.commit_index "First Commit"
+      git_add_all
+      git_commit_all "First Commit"
     end
 
     def repo_exists?
