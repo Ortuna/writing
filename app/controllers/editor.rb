@@ -9,6 +9,6 @@ class Writing < Padrino::Application
   def code
     path  = "#{PADRINO_ROOT}/spec/fixtures/sample_book"
     @book = Kitana::Book.new(path)
-    @book.chapters.first.sections.first.body
+    @book.chapters.first.sections.first.markdown
   end
 end

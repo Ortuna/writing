@@ -43,7 +43,7 @@
   }
 
   function updatePreview(code){
-    $preview.html( marked(code) );
+    $preview.html( marked(code.match(/-{3,}\s([\s\S]*?)-{3,}\s([\s\S]*)/)[2]) );
   }
 
   $(document).ready(function(){

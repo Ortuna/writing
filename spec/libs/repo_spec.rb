@@ -61,14 +61,19 @@ describe Kitana::Book do
       chapter.sections << section
       @book.chapters   << chapter
       @book.save
-      
+
       book = Kitana::Book.new(@path)
       book.chapters.first.sections.first.title.should == 'Section 1'
     end
+  end
 
-    xit 'Should be able to display changes from a minute ago' do
-      # @book.checkout(1.minute.ago)
+  describe 'History' do
+    it 'Should keep a list of changes' do
+      2.times do |x|
+        @book.title = "Change #{x}"
+        @book.save
+      end
+      @book.repo.log.count.should be 3
     end
-
   end
 end
