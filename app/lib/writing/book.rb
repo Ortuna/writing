@@ -57,7 +57,7 @@ module Kitana
 
     def save_config
       config_hash = configurable_options.inject({}) do |memo, option|
-        memo[option] = self.send(option) if respond_to? option
+        memo[option.to_s] = self.send(option) if respond_to? option
         memo
       end
       File.open("#{@path}/#{config_path}", 'w+') do |output|

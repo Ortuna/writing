@@ -7,7 +7,7 @@ module Kitana
 
     def initialize(path)
       @path     = path
-      @markdown = read_file
+      @markdown = read_markdown
       @metadata = Md::Helper.extract_metadata(@markdown)
       @title    = @metadata["title"] || ""
     end
@@ -16,17 +16,17 @@ module Kitana
       save_markdown
     end
 
-    def self.create(book, name)
-      self.new "#{book.path}/#{name}.md"
+    def self.create(chapter, name)
+      self.new "#{chapter.path}/#{name}.md"
     end
 
     private
     def save_markdown
-      File.open path { |f| f.write markdown }
+      File.open(path,'w+') { |f| f.write markdown }
     end
 
-    def read_file
-      File.read(@path)
+    def read_markdown
+      File.read(path) if File.exists?(path)
     end
   end
 end

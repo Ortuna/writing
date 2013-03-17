@@ -13,6 +13,12 @@ describe Kitana::Book do
 
   #Checkout a certain date feature
   describe "Checkout" do
+    def markdown_with_title_metadata
+      """------------
+      title: Section 1
+      ------------
+      """
+    end
 
     it 'Should not exist for invalid paths' do
       book = Kitana::Book.new('/tmp')
@@ -50,13 +56,12 @@ describe Kitana::Book do
 
     it 'Should save all the sections once save is called' do
       chapter = Kitana::Chapter.create(@book, 'Chapter 4')
-      section = Kitana::Section.create(@book, 'Section 1')
+      section = Kitana::Section.create(chapter, 'Section 1')
+      section.markdown = markdown_with_title_metadata
       chapter.sections << section
       @book.chapters   << chapter
       @book.save
-      require 'pry'
-      binding.pry
-      
+
       book = Kitana::Book.new(@path)
       book.chapters.first.sections.first.title.should == 'Section 1'
     end

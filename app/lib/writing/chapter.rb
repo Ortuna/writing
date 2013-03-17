@@ -15,7 +15,7 @@ module Kitana
     end
 
     def sections
-      sections ||= inject_and_create("#{path}/*.md", Kitana::Section)
+      @sections ||= inject_and_create("#{path}/*.md", Kitana::Section)
     end
 
     def save
