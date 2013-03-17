@@ -21,6 +21,6 @@ describe Kitana::Chapter do
 
     #put in sections tests
     section.title.should == 'Section 1'
-    section.body.should_not be_empty
+    section.markdown.should_not be_empty
   end
 end

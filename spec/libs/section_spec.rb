@@ -20,7 +20,7 @@ describe Kitana::Section do
     @section.metadata["author"].should_not be_blank
   end
 
-  it 'Should have body' do
-    @section.body.should_not be_empty
+  it 'Should have markdown' do
+    @section.markdown.should_not be_empty
   end
 end

@@ -11,14 +11,8 @@ module Kitana
     def initialize(book_path)
       @path = book_path
       load_book
-    end
 
-    ###
-    ## Gives all the chapters in this
-    #  book.
-    #
-    def chapters
-      @chapters ||= inject_and_create("#{path}#{chapters_path}/*", Kitana::Chapter)
+      @chapters = load_chapters
     end
 
     ###
@@ -43,10 +37,20 @@ module Kitana
     def save
       raise 'Could not find repo' if !@repo
       save_config
+      save_chapters
       commit_all "Saved book"
     end
 
     private
+    def save_chapters
+      chapters.each { |chapter| chapter.save }
+    end
+
+    def load_chapters
+      chapters = inject_and_create("#{path}#{chapters_path}/**/", Kitana::Chapter)
+      chapters.select { |chapter| chapter.path != "#{path}#{chapters_path}/" }
+    end
+
     def commit_all(commit_message = 'save')
       @repo.commit_all commit_message
     end

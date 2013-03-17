@@ -1,4 +1,4 @@
-  require "#{File.dirname(__FILE__)}/../spec_helper.rb"
+require "#{File.dirname(__FILE__)}/../spec_helper.rb"
 
 describe Kitana::Book do
   before :each do 
@@ -32,6 +32,33 @@ describe Kitana::Book do
       book = Kitana::Book.new(@path)
       book.send(:repo_exists?).should == true
       book.title.should == 'A cook book'
+    end
+
+    it 'Should have no chapters when created' do
+      @book.chapters.count.should == 0
+    end
+
+    it 'Should save all the chapters once save is called' do
+      chapter = Kitana::Chapter.create(@book, 'Chapter 3')
+      @book.chapters << chapter
+
+      @book.save
+
+      book = Kitana::Book.new(@path)
+      book.chapters.first.title.should == 'Chapter 3'
+    end
+
+    it 'Should save all the sections once save is called' do
+      chapter = Kitana::Chapter.create(@book, 'Chapter 4')
+      section = Kitana::Section.create(@book, 'Section 1')
+      chapter.sections << section
+      @book.chapters   << chapter
+      @book.save
+      require 'pry'
+      binding.pry
+      
+      book = Kitana::Book.new(@path)
+      book.chapters.first.sections.first.title.should == 'Section 1'
     end
 
     xit 'Should be able to display changes from a minute ago' do
