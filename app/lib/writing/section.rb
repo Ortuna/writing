@@ -6,7 +6,7 @@ module Kitana
     attr_reader   :path
 
     def initialize(path)
-      @path     = path
+      @path     = File.expand_path(path)
       @markdown = read_markdown
       @metadata = Md::Helper.extract_metadata(@markdown)
       @title    = @metadata["title"] || ""
@@ -14,6 +14,11 @@ module Kitana
 
     def save
       save_markdown
+    end
+
+    def relative_path
+      parts = path.split('/')
+      "#{parts[parts.size-4]}/#{parts[parts.size-2]}/#{basename}"
     end
 
     def self.create(chapter, name)

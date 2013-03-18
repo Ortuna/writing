@@ -6,12 +6,12 @@ module Kitana
     attr_accessor :title, :sections, :book
 
     def initialize(path)
-      @path = path
+      @path = File.expand_path(path)
       set_config(read_config)
     end
 
     def title
-      @title ||= File.basename(path)
+      @title ||= basename
     end
 
     def sections
@@ -26,6 +26,11 @@ module Kitana
 
     def self.create(book, path)
       self.new "#{book.path}/#{path}"
+    end
+
+    def relative_path
+      parts = path.split('/')
+      "#{parts[parts.size-3]}/#{basename}"
     end
 
     private

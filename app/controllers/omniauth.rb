@@ -41,7 +41,7 @@ class Writing < Padrino::Application
 
   def redirect_and_set_current_account(account)
     set_current_account(account)
-    redirect_local '/editor'
+    redirect_local '/author'
   end
 
   def redirect_local(to)

@@ -1,0 +1,5 @@
+%h1= @book.title
+%p= @book.description
+%ul
+  - @book.chapters.each do |chapter|
+    %li= link_to chapter.title, url_for(:book, :show_book, :id => chapter.relative_path)

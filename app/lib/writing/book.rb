@@ -49,7 +49,7 @@ module Kitana
 
     def load_chapters
       chapters = inject_and_create("#{path}#{chapters_path}/**/", Kitana::Chapter)
-      chapters.select { |chapter| chapter.path != "#{path}#{chapters_path}/" }
+      chapters.select { |chapter| chapter.path != File.expand_path("#{path}#{chapters_path}/") }
     end
 
     def git_add_all

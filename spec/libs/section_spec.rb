@@ -23,4 +23,8 @@ describe Kitana::Section do
   it 'Should have markdown' do
     @section.markdown.should_not be_empty
   end
+
+  it 'Should give the correct relative path' do
+    @section.relative_path.should == 'sample_book/Chapter 1/Section 1.md'
+  end
 end

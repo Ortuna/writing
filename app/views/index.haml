@@ -1,56 +1,6 @@
-%h1 Brandon Grotesque is bold.
-%p 
-  Whereas Meta Serif is easy on the eyes; perfect for long reading. Vexing vixens vote violently for vodka vials. See how easy that was? Boldly go where no man has been before.
-
-%p 
-  Whereas Meta Serif is easy on the eyes
-
+%h1= @book.title
+%p= @book.description
 %ul
-  %li 
-    %a{:href => '#'} Home
-  %li 
-    %a{:href => '#'} Getting Started
-  %li 
-    %a{:href => '#'} Installation
-  %li 
-    %a{:href => '#'} Basic Projects
-  %li 
-    %a{:href => '#'} Generators
-  %li 
-    %a{:href => '#'} Development Commands
-  %li 
-    %a{:href => '#'} Mounting Applications
-  %li 
-    %a{:href => '#'} Blog Tutorial
-  %li 
-    %a{:href => '#'} Application Helpers
-  %li 
-    %a{:href => '#'} Padrino Admin
-  %li 
-    %a{:href => '#'} Padrino Mailer
-  %li 
-    %a{:href => '#'} Padrino Cache
-  %li 
-    %a{:href => '#'} Controllers
-  %li 
-    %a{:href => '#'} Localization
-  %li 
-    %a{:href => '#'} Rake Tasks
-  %li 
-    %a{:href => '#'} The Bleeding Edge
-  %li 
-    %a{:href => '#'} Adding New Components
-  %li 
-    %a{:href => '#'} Standalone Usage in Sinatra
-  %li 
-    %a{:href => '#'} Running Padrino on JRuby
-
-  %p 
-    Whereas Meta Serif is easy on the eyes; perfect for long reading. Vexing vixens vote violently for vodka vials. See how easy that was? Boldly go where no man has been before.
-
-  %p 
-    Whereas Meta Serif is easy on the eyes; perfect for long reading. Vexing vixens vote violently for vodka vials. See how easy that was? Boldly go where no man has been before.
-    Whereas Meta Serif is easy on the eyes; perfect for long reading. Vexing vixens vote violently for vodka vials. See how easy that was? Boldly go where no man has been before.
-
-  %p 
-    Whereas Meta Serif is easy on the eyes; perfect for long reading. Vexing vixens vote violently for vodka vials. See how easy that was? Boldly go where no man has been before.
+  - @book.chapters.each do |chapter|
+    %li
+      %a{:href => chapter.basename}= chapter.title

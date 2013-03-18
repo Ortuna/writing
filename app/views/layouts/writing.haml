@@ -14,13 +14,15 @@
       try{Typekit.load();}catch(e){}
 
     = stylesheet_link_tag 'global', :media => 'all'
-    = render_partial 'editor/partials/header' if page_slug == 'editor'
+    = render_partial 'author/editor/partials/header' if @editor
 
     %link{ :href => "/images/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon" }
     %link{ :href => "/images/icon.jpg", :rel => "apple-touch-icon" }
-
-  %body{:class => page_slug }
-    .container
-      .content
-        = yield if block_given?
-    = render_partial 'shared/ga'
+  -if @editor
+    %body{:class => 'editor' }
+  -else
+    %body{:class => page_slug }
+  .container
+    .content
+      = yield if block_given?
+  = render_partial 'shared/ga'

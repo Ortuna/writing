@@ -23,4 +23,12 @@ describe Kitana::Chapter do
     section.title.should == 'Section 1'
     section.markdown.should_not be_empty
   end
+
+  it 'Should have the correct base name' do
+    @book.chapters.first.basename.should == 'Chapter 1'
+  end
+
+  it 'Should give a combination of book name and chapter' do
+    @book.chapters.first.relative_path.should == 'sample_book/Chapter 1'
+  end
 end

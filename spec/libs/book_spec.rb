@@ -31,6 +31,14 @@ describe Kitana::Book do
     it 'Should have chapters as an array' do
       @book.chapters.should_not be_nil
     end
+
+    it 'Should give the basename correctly' do
+      @book.basename.should == 'sample_book'
+    end
+
+    it 'Should only have 3 chapters' do
+      @book.chapters.size.should be 3
+    end
   end
 
 end

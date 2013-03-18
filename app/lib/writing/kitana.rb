@@ -21,6 +21,13 @@ module Kitana
       }
     end
 
+    ###
+    ## Should give the basename for the path
+    #
+    def basename
+      File.basename(path)
+    end
+
     private
     def yaml_file_to_hash(file_path)
       config_hash = YAML::load(File.open(file_path))

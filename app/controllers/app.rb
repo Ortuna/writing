@@ -4,6 +4,8 @@ class Writing < Padrino::Application
   layout :writing
 
   get :index do
+    path  = "#{PADRINO_ROOT}/spec/fixtures/sample_book"
+    @book = Kitana::Book.new(path)
     render :index
   end
 
