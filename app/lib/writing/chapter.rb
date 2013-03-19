@@ -5,17 +5,23 @@ module Kitana
     attr_reader   :path
     attr_accessor :title, :sections, :book
 
-    def initialize(path)
+    def initialize(path, book = nil)
       @path = File.expand_path(path)
+      @book = book
       set_config(read_config)
+      load_sections
     end
 
     def title
       @title ||= basename
     end
 
-    def sections
-      @sections ||= inject_and_create("#{path}/*.md", Kitana::Section)
+    def load_sections
+      @sections = inject_and_create("#{path}/*.md", Kitana::Section)
+      @sections.each do |section|
+        section.book = @book
+        section.chapter = self
+      end
     end
 
     def save

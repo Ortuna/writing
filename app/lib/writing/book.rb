@@ -11,7 +11,6 @@ module Kitana
     def initialize(book_path)
       @path = File.expand_path(book_path)
       load_book
-
       @chapters = load_chapters
     end
 
@@ -46,9 +45,16 @@ module Kitana
     def save_chapters
       chapters.each { |chapter| chapter.save }
     end
+    
+    def inject_and_create(path, klass)
+      Dir[path].inject([]) { |memo, inject_path|
+        memo << klass.new(inject_path, self)
+      }
+    end
 
     def load_chapters
       chapters = inject_and_create("#{path}#{chapters_path}/**/", Kitana::Chapter)
+      chapters.each   { |chapter| chapter.book = self }
       chapters.select { |chapter| chapter.path != File.expand_path("#{path}#{chapters_path}/") }
     end
 
@@ -104,5 +110,9 @@ module Kitana
       @config.merge! read_config
       set_config(@config)
     end
+
+    def config_path
+      "_book.yml"
+    end    
   end
 end

@@ -2,7 +2,7 @@ module Kitana
   class Section
     include Kitana::Common
     
-    attr_accessor :title, :markdown, :metadata
+    attr_accessor :title, :markdown, :metadata, :book, :chapter
     attr_reader   :path
 
     def initialize(path)

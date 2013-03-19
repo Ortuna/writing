@@ -27,4 +27,14 @@ describe Kitana::Section do
   it 'Should give the correct relative path' do
     @section.relative_path.should == 'sample_book/Chapter 1/Section 1.md'
   end
+
+  it 'Should give the correct book' do
+    @book = Kitana::Book.new("#{PADRINO_ROOT}/spec/fixtures/sample_book/")
+    @book.chapters.first.sections.first.book.title == 'Sample Book'
+  end
+
+  it 'Should give the correct chapter' do
+    @book = Kitana::Book.new("#{PADRINO_ROOT}/spec/fixtures/sample_book/")
+    @book.chapters.first.sections.first.chapter.title == 'Chapter 1'
+  end
 end
