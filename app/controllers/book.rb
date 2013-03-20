@@ -1,6 +1,6 @@
 class Writing
   def get_book(id)
-    books_path = "#{PADRINO_ROOT}/spec/fixtures"
+    books_path = "#{PADRINO_ROOT}/vendor/kitana/spec/fixtures"
     @book = Kitana::Book.new("#{books_path}/#{id}")    
   end
 
