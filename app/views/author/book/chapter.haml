@@ -1,4 +1,5 @@
-%h1= @chapter.title
-%ul
-  - @chapter.sections.each do |section|
-    %li= link_to section.title, url_for(:book, :show_book, :id => section.relative_path)
+.book
+  %h1= @chapter.title
+  %ul
+    - @chapter.sections.each do |section|
+      %li= link_to section.title, url_for(:book, :show_book, :id => section.relative_path)

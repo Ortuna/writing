@@ -2,8 +2,8 @@ require "#{File.dirname(__FILE__)}/../spec_helper.rb"
 
 describe Kitana::Book do
   before :each do 
-    @path  = "#{PADRINO_ROOT}/spec/fixtures/sample_book"
-    @book = Kitana::Book.new(@path)
+    @path  = "#{FIXTURE_ROOT}/sample_book"
+    @book  = Kitana::Book.new(@path)
   end
 
   #Basic required features

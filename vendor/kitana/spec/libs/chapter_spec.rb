@@ -2,7 +2,7 @@ require "#{File.dirname(__FILE__)}/../spec_helper.rb"
 
 describe Kitana::Chapter do
   before :each do 
-    path  = "#{PADRINO_ROOT}/spec/fixtures/sample_book"
+    path  = "#{FIXTURE_ROOT}/sample_book"
     @book = Kitana::Book.new(path)
   end
 

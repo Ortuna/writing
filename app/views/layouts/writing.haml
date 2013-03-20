@@ -14,6 +14,7 @@
       try{Typekit.load();}catch(e){}
 
     = stylesheet_link_tag 'global', :media => 'all'
+    = stylesheet_link_tag 'admin', :media => 'all' unless @editor
     = render_partial 'author/editor/partials/header' if @editor
 
     %link{ :href => "/images/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon" }

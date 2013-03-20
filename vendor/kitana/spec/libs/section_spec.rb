@@ -3,7 +3,7 @@ require "#{File.dirname(__FILE__)}/../spec_helper.rb"
 describe Kitana::Section do
   
   before :each do 
-    path  = "#{PADRINO_ROOT}/spec/fixtures/sample_book/chapters/Chapter 1/Section 1.md"
+    path  = "#{FIXTURE_ROOT}/sample_book/chapters/Chapter 1/Section 1.md"
     @section = Kitana::Section.new(path)
   end
 
@@ -29,12 +29,12 @@ describe Kitana::Section do
   end
 
   it 'Should give the correct book' do
-    @book = Kitana::Book.new("#{PADRINO_ROOT}/spec/fixtures/sample_book/")
+    @book = Kitana::Book.new("#{FIXTURE_ROOT}/sample_book/")
     @book.chapters.first.sections.first.book.title == 'Sample Book'
   end
 
   it 'Should give the correct chapter' do
-    @book = Kitana::Book.new("#{PADRINO_ROOT}/spec/fixtures/sample_book/")
+    @book = Kitana::Book.new("#{FIXTURE_ROOT}/sample_book/")
     @book.chapters.first.sections.first.chapter.title == 'Chapter 1'
   end
 end

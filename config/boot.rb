@@ -6,9 +6,8 @@ require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
 # Padrino::Logger::Config[:development][:log_level]  = :devel
-
-
 Padrino.before_load do; end
+
 Padrino.after_load do
   DataMapper.finalize
 end

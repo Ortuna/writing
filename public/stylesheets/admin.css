@@ -1,0 +1,16 @@
+a,
+a:visited {
+  text-decoration: none;
+}
+
+h1 {
+  text-align: left;
+}
+
+h1::after {
+  border-bottom: none;
+}
+
+.book ul li {
+  list-style: none;
+}
