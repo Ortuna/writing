@@ -5,9 +5,10 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-require "#{PADRINO_ROOT}/vendor/kitana/kitana"
+# require "#{PADRINO_ROOT}/vendor/kitana/kitana"
 # Padrino::Logger::Config[:development][:log_level]  = :devel
 
+Padrino.dependency_paths << "#{Padrino.root}/vendor/kitana/kitana.rb"
 Padrino.before_load do; end
 
 Padrino.after_load do
